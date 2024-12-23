@@ -1,15 +1,26 @@
 body {
   font-family: sans-serif;
-  -webkit-font-smoothing: auto;
-  -moz-font-smoothing: auto;
-  -moz-osx-font-smoothing: grayscale;
-  font-smoothing: auto;
-  text-rendering: optimizeLegibility;
-  font-smooth: always;
+  -webkit-font-smoothing: antialiased; /* For better font rendering on WebKit browsers */
+  -moz-osx-font-smoothing: grayscale; /* For better font rendering on macOS */
+  text-rendering: optimizeLegibility; /* Improves text rendering for most modern browsers */
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
   font-size: 1.5rem;
+}
+
+.quiz-background {
+  background-image: url("/project/workspace/public/images/background.jpg"); /* Path to your background image */
+  background-size: cover; /* Ensure the image covers the entire screen */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  display: flex; /* Flexbox for centering content */
+  justify-content: center;
+  align-items: center;
 }
