@@ -8,84 +8,132 @@ interface Question {
 
 const questions: Question[] = [
   {
-    question: "What is the capital of France?",
-    answers: ["Paris", "London", "Berlin", "Rome"],
-    correctAnswer: "Paris",
+    question: "Qual é a principal fonte de energia renovável em Portugal?",
+    answers: ["Solar", "Carvão", "Nuclear", "Gás"],
+    correctAnswer: "Solar",
   },
   {
-    question: "What is the largest planet in our solar system?",
-    answers: ["Earth", "Saturn", "Jupiter", "Uranus"],
-    correctAnswer: "Jupiter",
-  },
-  {
-    question: "What is the chemical symbol for gold?",
-    answers: ["Ag", "Au", "Hg", "Pb"],
-    correctAnswer: "Au",
-  },
-  {
-    question: "Who painted the Mona Lisa?",
-    answers: ["Leonardo da Vinci", "Michelangelo", "Raphael", "Caravaggio"],
-    correctAnswer: "Leonardo da Vinci",
-  },
-  {
-    question: "What is the smallest country in the world?",
-    answers: ["Vatican City", "Monaco", "Nauru", "Tuvalu"],
-    correctAnswer: "Vatican City",
-  },
-  {
-    question: "What is the highest mountain in the world?",
-    answers: ["Mount Everest", "K2", "Kangchenjunga", "Lhotse"],
-    correctAnswer: "Mount Everest",
-  },
-  {
-    question: "What is the deepest ocean?",
+    question: "O que é a eficiência energética?",
     answers: [
-      "Pacific Ocean",
-      "Atlantic Ocean",
-      "Indian Ocean",
-      "Arctic Ocean",
+      "Usar mais energia do que o necessário",
+      "Reduzir o consumo de energia sem perder qualidade",
+      "Aumentar a produção de eletricidade",
+      "Usar eletricidade de fontes fósseis",
     ],
-    correctAnswer: "Pacific Ocean",
+    correctAnswer: "Reduzir o consumo de energia sem perder qualidade",
   },
   {
-    question: "What is the largest living species of lizard?",
+    question: "Qual é a energia que vem do vento?",
+    answers: ["Eólica", "Solar", "Hidráulica", "Geotérmica"],
+    correctAnswer: "Eólica",
+  },
+  {
+    question: "O que é o 'efeito estufa'?",
     answers: [
-      "Komodo dragon",
-      "Saltwater crocodile",
-      "Black mamba",
-      "African elephant",
+      "Aquecimento da Terra devido a gases como dióxido de carbono",
+      "Aquecimento da água nos oceanos",
+      "Aquecimento do solo pelo Sol",
+      "Aquecimento causado por usinas de energia",
     ],
-    correctAnswer: "Komodo dragon",
+    correctAnswer:
+      "Aquecimento da Terra devido a gases como dióxido de carbono",
   },
   {
-    question: "What is the fastest land animal?",
-    answers: ["Cheetah", "Lion", "Leopard", "Jaguar"],
-    correctAnswer: "Cheetah",
-  },
-  {
-    question: "What is the largest mammal?",
-    answers: ["Blue whale", "Fin whale", "Humpback whale", "Sperm whale"],
-    correctAnswer: "Blue whale",
-  },
-  {
-    question: "What is the driest desert?",
+    question: "Qual é o objetivo da transição energética?",
     answers: [
-      "Sahara Desert",
-      "Gobi Desert",
-      "Mojave Desert",
-      "Atacama Desert",
+      "Aumentar o uso de fontes de energia não renováveis",
+      "Reduzir as emissões de gases de efeito estufa e utilizar mais fontes renováveis",
+      "Aumentar a produção de energia nuclear",
+      "Substituir todas as energias renováveis por energia solar",
     ],
-    correctAnswer: "Atacama Desert",
+    correctAnswer:
+      "Reduzir as emissões de gases de efeito estufa e utilizar mais fontes renováveis",
   },
   {
-    question: "What is the longest river?",
+    question: "Qual destas fontes de energia é considerada não renovável?",
+    answers: ["Solar", "Eólica", "Carvão", "Hidráulica"],
+    correctAnswer: "Carvão",
+  },
+  {
+    question: "O que é energia hidráulica?",
     answers: [
-      "Nile River",
-      "Amazon River",
-      "Yangtze River",
-      "Mississippi River",
+      "Energia gerada a partir da água em movimento",
+      "Energia gerada a partir do vento",
+      "Energia proveniente do sol",
+      "Energia gerada a partir do calor da Terra",
     ],
-    correctAnswer: "Nile River",
+    correctAnswer: "Energia gerada a partir da água em movimento",
+  },
+  {
+    question: "Qual é a principal vantagem das lâmpadas LED?",
+    answers: [
+      "Elas consomem muita energia",
+      "Elas têm uma vida útil longa e consomem pouca energia",
+      "Elas são caras e não duram muito",
+      "Elas funcionam apenas com energia solar",
+    ],
+    correctAnswer: "Elas têm uma vida útil longa e consomem pouca energia",
+  },
+  {
+    question: "O que significa a expressão 'pegada de carbono'?",
+    answers: [
+      "A quantidade de carbono em um produto",
+      "A quantidade de dióxido de carbono emitida por atividades humanas",
+      "A quantidade de carbono em combustíveis fósseis",
+      "A quantidade de carbono que os vegetais consomem",
+    ],
+    correctAnswer:
+      "A quantidade de dióxido de carbono emitida por atividades humanas",
+  },
+  {
+    question: "Qual é a melhor forma de economizar energia em casa?",
+    answers: [
+      "Deixar luzes acesas o tempo todo",
+      "Desligar aparelhos eletrônicos quando não estiverem em uso",
+      "Usar aparelhos de aquecimento o tempo todo",
+      "Deixar portas e janelas abertas durante o inverno",
+    ],
+    correctAnswer: "Desligar aparelhos eletrônicos quando não estiverem em uso",
+  },
+  {
+    question: "O que é energia geotérmica?",
+    answers: [
+      "Energia gerada a partir do calor da Terra",
+      "Energia gerada pelo sol",
+      "Energia gerada a partir do vento",
+      "Energia gerada a partir da água",
+    ],
+    correctAnswer: "Energia gerada a partir do calor da Terra",
+  },
+  {
+    question: "Como a energia solar pode ser usada em casa?",
+    answers: [
+      "Para aquecer a água",
+      "Para gerar eletricidade",
+      "Para esfriar a casa",
+      "Todas as opções acima",
+    ],
+    correctAnswer: "Todas as opções acima",
+  },
+  {
+    question: "O que é a biomassa?",
+    answers: [
+      "Energia proveniente de lixo",
+      "Energia proveniente de plantas e resíduos orgânicos",
+      "Energia gerada pelo vento",
+      "Energia gerada pelo calor da Terra",
+    ],
+    correctAnswer: "Energia proveniente de plantas e resíduos orgânicos",
+  },
+  {
+    question: "Por que é importante reduzir o consumo de energia?",
+    answers: [
+      "Para proteger o meio ambiente e reduzir os custos",
+      "Para aumentar as emissões de gases de efeito estufa",
+      "Para usar mais eletricidade de fontes não renováveis",
+      "Para destruir as florestas",
+    ],
+    correctAnswer: "Para proteger o meio ambiente e reduzir os custos",
   },
 ];
 
