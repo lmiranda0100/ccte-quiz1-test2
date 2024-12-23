@@ -8,8 +8,38 @@ body {
   font-smooth: always;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
+
+  /* Add a dynamic background */
+  background-image: url(https://res.cloudinary.com/dpbhl4bqw/image/upload/v1734976999/background_bekgxt.webp); /* Replace with your image URL */
+  background-size: cover; /* Ensures the background image covers the whole screen */
+  background-position: center center; /* Center the background image */
+  background-attachment: fixed; /* Creates a parallax effect when scrolling */
+  background-repeat: no-repeat; /* Prevents the background from repeating */
+
+  /* Gradient overlay (optional, add a color overlay for better contrast with text) */
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url(https://res.cloudinary.com/dpbhl4bqw/image/upload/v1734976999/background_bekgxt.webp); /* Adjust the rgba for transparency */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 h1 {
   font-size: 1.5rem;
+  color: white; /* Make text white for contrast against the background */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Optional: adds shadow to the text for better visibility */
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* Add a cool fade-in effect to the h1 */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
