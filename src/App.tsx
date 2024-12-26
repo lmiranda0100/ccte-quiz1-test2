@@ -28,7 +28,7 @@ const questions: Question[] = [
     correctAnswer: "Eólica",
   },
   {
-    question: "O que é o 'efeito estufa'?",
+    question: "O que é o 'efeito de estufa'?",
     answers: [
       "Aquecimento da Terra devido a gases como dióxido de carbono",
       "Aquecimento da água nos oceanos",
@@ -42,12 +42,12 @@ const questions: Question[] = [
     question: "Qual é o objetivo da transição energética?",
     answers: [
       "Aumentar o uso de fontes de energia não renováveis",
-      "Reduzir as emissões de gases de efeito estufa e utilizar mais fontes renováveis",
+      "Reduzir as emissões de gases de efeito de estufa e utilizar mais fontes renováveis",
       "Aumentar a produção de energia nuclear",
       "Substituir todas as energias renováveis por energia solar",
     ],
     correctAnswer:
-      "Reduzir as emissões de gases de efeito estufa e utilizar mais fontes renováveis",
+      "Reduzir as emissões de gases de efeito de estufa e utilizar mais fontes renováveis",
   },
   {
     question: "Qual destas fontes de energia é considerada não renovável?",
@@ -89,11 +89,11 @@ const questions: Question[] = [
     question: "Qual é a melhor forma de economizar energia em casa?",
     answers: [
       "Deixar luzes acesas o tempo todo",
-      "Desligar aparelhos eletrônicos quando não estiverem em uso",
+      "Desligar aparelhos eletrónicos quando não estiverem em uso",
       "Usar aparelhos de aquecimento o tempo todo",
       "Deixar portas e janelas abertas durante o inverno",
     ],
-    correctAnswer: "Desligar aparelhos eletrônicos quando não estiverem em uso",
+    correctAnswer: "Desligar aparelhos eletrónicos quando não estiverem em uso",
   },
   {
     question: "O que é energia geotérmica?",
@@ -111,9 +111,9 @@ const questions: Question[] = [
       "Para aquecer a água",
       "Para gerar eletricidade",
       "Para esfriar a casa",
-      "Todas as opções acima",
+      "Todas as opções",
     ],
-    correctAnswer: "Todas as opções acima",
+    correctAnswer: "Todas as opções",
   },
   {
     question: "O que é a biomassa?",
@@ -129,7 +129,7 @@ const questions: Question[] = [
     question: "Por que é importante reduzir o consumo de energia?",
     answers: [
       "Para proteger o meio ambiente e reduzir os custos",
-      "Para aumentar as emissões de gases de efeito estufa",
+      "Para aumentar as emissões de gases de efeito de estufa",
       "Para usar mais eletricidade de fontes não renováveis",
       "Para destruir as florestas",
     ],
@@ -154,14 +154,15 @@ const App = () => {
   const [isFinished, setIsFinished] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
   const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
+  const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false); // New state
 
-  const fixedPassword = "ctSwrf2^781u%*6"; // Set your password here
+  const fixedPassword = "yctSwrf2^781u%*6"; // Set your password here
 
   const handleLogin = () => {
     if (password === fixedPassword) {
       setIsAuthenticated(true);
     } else {
-      alert("Palavra-passe inválida!");
+      alert("Senha inválida!");
     }
   };
 
@@ -183,10 +184,12 @@ const App = () => {
       setScore(score + 1);
       setIsCorrect(true);
       setIsWrong(false);
+      setIsAnswerSubmitted(true); // Disable the button after correct submission
     } else {
       setScore(score - 0.5);
       setIsWrong(true);
       setIsCorrect(false);
+      setIsAnswerSubmitted(false); // Reset the button state for incorrect answers
     }
     setIsAnswered(true);
   };
@@ -199,6 +202,7 @@ const App = () => {
     setSelectedAnswer("");
     setCurrentQuestion(nextQuestionIndex);
     setShuffledAnswers(shuffleArray([...questions[nextQuestionIndex].answers]));
+    setIsAnswerSubmitted(false); // Enable the button again for the next question
   };
 
   const handleFinishQuiz = () => {
@@ -216,6 +220,7 @@ const App = () => {
     setIsFinished(false);
     setIsAnswered(false);
     setShuffledAnswers([]);
+    setIsAnswerSubmitted(false); // Reset the answer submission state
   };
 
   const handleExportResults = () => {
@@ -231,10 +236,10 @@ const App = () => {
   if (!isAuthenticated) {
     return (
       <div className="flex flex-col justify-center items-center h-screen">
-        <h2 className="mb-4">Digite a Palavra-passe para Aceder o Quiz</h2>
+        <h2 className="mb-4">Digite a Senha para Aceder ao Quiz</h2>
         <input
           type="password"
-          placeholder="Palavra-passe"
+          placeholder="Senha"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="px-4 py-2 border-2 border-gray-200 rounded-lg mb-4"
@@ -274,7 +279,7 @@ const App = () => {
   if (isFinished) {
     return (
       <div className="flex flex-col justify-center items-center h-screen">
-        <h1 className="text-3xl font-bold mb-4">Resultado Quiz</h1>
+        <h1 className="text-3xl font-bold mb-4">Resultado do Quiz</h1>
         <div className="bg-white p-6 rounded-lg shadow-md mb-4">
           <p className="text-2xl font-bold mb-4">Nome: {name}</p>
           <p className="text-2xl font-bold mb-4">Pontuação: {score}</p>
@@ -321,14 +326,15 @@ const App = () => {
         ))}
       </div>
       {isCorrect && (
-        <p className="text-2xl font-bold mb-4 text-green-500">Correcto!</p>
+        <p className="text-2xl font-bold mb-4 text-green-500">Correto!</p>
       )}
       {isWrong && (
-        <p className="text-2xl font-bold mb-4 text-red-500">Tenta Novamente!</p>
+        <p className="text-2xl font-bold mb-4 text-red-500">Tente Novamente!</p>
       )}
       <button
         onClick={handleSubmitAnswer}
         className="px-4 py-2 bg-blue-500 text-white rounded-lg mt-4"
+        disabled={isCorrect} // Disable button only if the answer is correct
       >
         Confirmar Resposta
       </button>
