@@ -249,11 +249,13 @@ const App = () => {
     return (
       <div className="flex flex-col justify-center items-center h-screen">
         <h1 className="text-3xl font-bold mb-4">Resultado Quiz</h1>
-        <p className="text-2xl font-bold mb-4">Nome: {name}</p>
-        <p className="text-2xl font-bold mb-4">Pontuação: {score}</p>
+        <div className="bg-white p-6 rounded-lg shadow-md mb-4">
+          <p className="text-2xl font-bold mb-4">Nome: {name}</p>
+          <p className="text-2xl font-bold mb-4">Pontuação: {score}</p>
+        </div>
         <button
           onClick={handleExportResults}
-          className="px-4 py-2 bg-green-500 text-white rounded-lg"
+          className="px-4 py-2 bg-green-500 text-white rounded-lg mt-4"
         >
           Exportar Resultados para CSV
         </button>
