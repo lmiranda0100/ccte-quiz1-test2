@@ -135,16 +135,6 @@ const questions: Question[] = [
     ],
     correctAnswer: "Para proteger o meio ambiente e reduzir os custos",
   },
-  {
-    question: "Questão 15?",
-    answers: ["A", "B", "C", "D"],
-    correctAnswer: "C",
-  },
-  {
-    question: "Questão 16?",
-    answers: ["A", "B", "C", "D"],
-    correctAnswer: "A",
-  },
 ];
 
 const shuffleArray = (array: string[]) => {
@@ -152,6 +142,8 @@ const shuffleArray = (array: string[]) => {
 };
 
 const App = () => {
+  const [password, setPassword] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [name, setName] = useState("");
   const [hasStarted, setHasStarted] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -162,6 +154,16 @@ const App = () => {
   const [isFinished, setIsFinished] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
   const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
+
+  const fixedPassword = "ctSwrf2^781u%*6"; // Set your password here
+
+  const handleLogin = () => {
+    if (password === fixedPassword) {
+      setIsAuthenticated(true);
+    } else {
+      alert("Palavra-passe inválida!");
+    }
+  };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -225,6 +227,29 @@ const App = () => {
     link.click();
   };
 
+  // Password Login Form
+  if (!isAuthenticated) {
+    return (
+      <div className="flex flex-col justify-center items-center h-screen">
+        <h2 className="mb-4">Digite a Palavra-passe para Aceder o Quiz</h2>
+        <input
+          type="password"
+          placeholder="Palavra-passe"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="px-4 py-2 border-2 border-gray-200 rounded-lg mb-4"
+        />
+        <button
+          onClick={handleLogin}
+          className="px-4 py-2 bg-green-500 text-white rounded-lg"
+        >
+          Aceder
+        </button>
+      </div>
+    );
+  }
+
+  // Quiz Start
   if (!hasStarted) {
     return (
       <div className="flex flex-col justify-center items-center h-screen">
@@ -245,6 +270,7 @@ const App = () => {
     );
   }
 
+  // Quiz Results
   if (isFinished) {
     return (
       <div className="flex flex-col justify-center items-center h-screen">
@@ -269,6 +295,7 @@ const App = () => {
     );
   }
 
+  // Quiz Questions
   return (
     <div className="flex flex-col justify-center items-center h-screen">
       <h1 className="text-3xl font-bold mb-4">Questão {currentQuestion + 1}</h1>
