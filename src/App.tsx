@@ -135,6 +135,16 @@ const questions: Question[] = [
     ],
     correctAnswer: "Para proteger o meio ambiente e reduzir os custos",
   },
+  {
+    question: "Questão 15?",
+    answers: ["A", "B", "C", "D"],
+    correctAnswer: "C",
+  },
+  {
+    question: "Questão 16?",
+    answers: ["A", "B", "C", "D"],
+    correctAnswer: "A",
+  },
 ];
 
 const shuffleArray = (array: string[]) => {
@@ -249,7 +259,7 @@ const App = () => {
         </button>
         <button
           onClick={handleRestartQuiz}
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+          className="px-4 py-2 bg-blue-500 text-white rounded-lg mt-2"
         >
           Reiniciar Quiz
         </button>
@@ -289,7 +299,7 @@ const App = () => {
       )}
       <button
         onClick={handleSubmitAnswer}
-        className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+        className="px-4 py-2 bg-blue-500 text-white rounded-lg mt-4"
       >
         Confirmar Resposta
       </button>
@@ -304,7 +314,7 @@ const App = () => {
       {currentQuestion === questions.length - 1 && (
         <button
           onClick={handleFinishQuiz}
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg mt-4"
+          className="absolute bottom-4 center-4 px-4 py-2 bg-red-500 text-white rounded-lg"
         >
           Terminar Quiz
         </button>
