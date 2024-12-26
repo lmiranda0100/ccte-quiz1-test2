@@ -207,7 +207,7 @@ const App = () => {
   };
 
   const handleExportResults = () => {
-    const csvContent = `Name,Score\n${name},${score}`;
+    const csvContent = `Nome,Pontuação\n${name},${score}`;
     const encodedUri = encodeURI(`data:text/csv;charset=utf-8,${csvContent}`);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -220,7 +220,7 @@ const App = () => {
       <div className="flex flex-col justify-center items-center h-screen">
         <input
           type="text"
-          placeholder="Enter your name"
+          placeholder="Insira o seu nome"
           value={name}
           onChange={handleNameChange}
           className="px-4 py-2 border-2 border-gray-200 rounded-lg mb-4"
@@ -229,7 +229,7 @@ const App = () => {
           onClick={handleStartQuiz}
           className="px-4 py-2 bg-green-500 text-white rounded-lg"
         >
-          Start Quiz
+          Iniciar Quiz
         </button>
       </div>
     );
@@ -238,20 +238,20 @@ const App = () => {
   if (isFinished) {
     return (
       <div className="flex flex-col justify-center items-center h-screen">
-        <h1 className="text-3xl font-bold mb-4">Quiz Results</h1>
-        <p className="text-2xl font-bold mb-4">Name: {name}</p>
-        <p className="text-2xl font-bold mb-4">Score: {score}</p>
+        <h1 className="text-3xl font-bold mb-4">Resultado Quiz</h1>
+        <p className="text-2xl font-bold mb-4">Nome: {name}</p>
+        <p className="text-2xl font-bold mb-4">Pontuação: {score}</p>
         <button
           onClick={handleExportResults}
           className="px-4 py-2 bg-green-500 text-white rounded-lg"
         >
-          Export Results to CSV
+          Exportar Resultados para CSV
         </button>
         <button
           onClick={handleRestartQuiz}
           className="px-4 py-2 bg-blue-500 text-white rounded-lg"
         >
-          Start Quiz Again
+          Reiniciar Quiz
         </button>
       </div>
     );
@@ -259,9 +259,7 @@ const App = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">
-      <h1 className="text-3xl font-bold mb-4">
-        Quiz Question {currentQuestion + 1}
-      </h1>
+      <h1 className="text-3xl font-bold mb-4">Questão {currentQuestion + 1}</h1>
       <div
         className={`p-4 border-2 rounded-lg ${
           isCorrect ? "bg-green-200" : isWrong ? "bg-red-200" : "bg-white"
@@ -284,23 +282,23 @@ const App = () => {
         ))}
       </div>
       {isCorrect && (
-        <p className="text-2xl font-bold mb-4 text-green-500">Correct!</p>
+        <p className="text-2xl font-bold mb-4 text-green-500">Correcto!</p>
       )}
       {isWrong && (
-        <p className="text-2xl font-bold mb-4 text-red-500">Try Again!</p>
+        <p className="text-2xl font-bold mb-4 text-red-500">Tenta Novamente!</p>
       )}
       <button
         onClick={handleSubmitAnswer}
         className="px-4 py-2 bg-blue-500 text-white rounded-lg"
       >
-        Submit Answer
+        Confirmar Resposta
       </button>
       {isAnswered && currentQuestion < questions.length - 1 && (
         <button
           onClick={handleNextQuestion}
           className="px-4 py-2 bg-blue-500 text-white rounded-lg mt-4"
         >
-          Next
+          Próximo
         </button>
       )}
       {currentQuestion === questions.length - 1 && (
@@ -308,7 +306,7 @@ const App = () => {
           onClick={handleFinishQuiz}
           className="px-4 py-2 bg-blue-500 text-white rounded-lg mt-4"
         >
-          Finish Quiz
+          Terminar Quiz
         </button>
       )}
     </div>
