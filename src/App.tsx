@@ -38,103 +38,6 @@ const questions: Question[] = [
     correctAnswer:
       "Aquecimento da Terra devido a gases como dióxido de carbono",
   },
-  {
-    question: "Qual é o objetivo da transição energética?",
-    answers: [
-      "Aumentar o uso de fontes de energia não renováveis",
-      "Reduzir as emissões de gases de efeito de estufa e utilizar mais fontes renováveis",
-      "Aumentar a produção de energia nuclear",
-      "Substituir todas as energias renováveis por energia solar",
-    ],
-    correctAnswer:
-      "Reduzir as emissões de gases de efeito de estufa e utilizar mais fontes renováveis",
-  },
-  {
-    question: "Qual destas fontes de energia é considerada não renovável?",
-    answers: ["Solar", "Eólica", "Carvão", "Hidráulica"],
-    correctAnswer: "Carvão",
-  },
-  {
-    question: "O que é energia hidráulica?",
-    answers: [
-      "Energia gerada a partir da água em movimento",
-      "Energia gerada a partir do vento",
-      "Energia proveniente do sol",
-      "Energia gerada a partir do calor da Terra",
-    ],
-    correctAnswer: "Energia gerada a partir da água em movimento",
-  },
-  {
-    question: "Qual é a principal vantagem das lâmpadas LED?",
-    answers: [
-      "Elas consomem muita energia",
-      "Elas têm uma vida útil longa e consomem pouca energia",
-      "Elas são caras e não duram muito",
-      "Elas funcionam apenas com energia solar",
-    ],
-    correctAnswer: "Elas têm uma vida útil longa e consomem pouca energia",
-  },
-  {
-    question: "O que significa a expressão 'pegada de carbono'?",
-    answers: [
-      "A quantidade de carbono em um produto",
-      "A quantidade de dióxido de carbono emitida por atividades humanas",
-      "A quantidade de carbono em combustíveis fósseis",
-      "A quantidade de carbono que os vegetais consomem",
-    ],
-    correctAnswer:
-      "A quantidade de dióxido de carbono emitida por atividades humanas",
-  },
-  {
-    question: "Qual é a melhor forma de economizar energia em casa?",
-    answers: [
-      "Deixar luzes acesas o tempo todo",
-      "Desligar aparelhos eletrónicos quando não estiverem em uso",
-      "Usar aparelhos de aquecimento o tempo todo",
-      "Deixar portas e janelas abertas durante o inverno",
-    ],
-    correctAnswer: "Desligar aparelhos eletrónicos quando não estiverem em uso",
-  },
-  {
-    question: "O que é energia geotérmica?",
-    answers: [
-      "Energia gerada a partir do calor da Terra",
-      "Energia gerada pelo sol",
-      "Energia gerada a partir do vento",
-      "Energia gerada a partir da água",
-    ],
-    correctAnswer: "Energia gerada a partir do calor da Terra",
-  },
-  {
-    question: "Como a energia solar pode ser usada em casa?",
-    answers: [
-      "Para aquecer a água",
-      "Para gerar eletricidade",
-      "Para esfriar a casa",
-      "Todas as opções",
-    ],
-    correctAnswer: "Todas as opções",
-  },
-  {
-    question: "O que é a biomassa?",
-    answers: [
-      "Energia proveniente de lixo",
-      "Energia proveniente de plantas e resíduos orgânicos",
-      "Energia gerada pelo vento",
-      "Energia gerada pelo calor da Terra",
-    ],
-    correctAnswer: "Energia proveniente de plantas e resíduos orgânicos",
-  },
-  {
-    question: "Por que é importante reduzir o consumo de energia?",
-    answers: [
-      "Para proteger o meio ambiente e reduzir os custos",
-      "Para aumentar as emissões de gases de efeito de estufa",
-      "Para usar mais eletricidade de fontes não renováveis",
-      "Para destruir as florestas",
-    ],
-    correctAnswer: "Para proteger o meio ambiente e reduzir os custos",
-  },
 ];
 
 const shuffleArray = (array: string[]) => {
@@ -155,6 +58,7 @@ const App = () => {
   const [isAnswered, setIsAnswered] = useState(false);
   const [shuffledAnswers, setShuffledAnswers] = useState<string[]>([]);
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false); // New state
+  const [incorrectAttempts, setIncorrectAttempts] = useState(0); // New state for tracking incorrect attempts
 
   const fixedPassword = "yctSwrf2^781u%*6"; // Set your password here
 
@@ -184,12 +88,14 @@ const App = () => {
       setScore(score + 1);
       setIsCorrect(true);
       setIsWrong(false);
-      setIsAnswerSubmitted(true); // Disable the button after correct submission
+      setIsAnswerSubmitted(true);
+      setIncorrectAttempts(0); // Reset incorrect attempts on correct answer
     } else {
       setScore(score - 0.5);
       setIsWrong(true);
       setIsCorrect(false);
-      setIsAnswerSubmitted(false); // Reset the button state for incorrect answers
+      setIsAnswerSubmitted(false);
+      setIncorrectAttempts(incorrectAttempts + 1); // Increment incorrect attempts
     }
     setIsAnswered(true);
   };
@@ -202,7 +108,8 @@ const App = () => {
     setSelectedAnswer("");
     setCurrentQuestion(nextQuestionIndex);
     setShuffledAnswers(shuffleArray([...questions[nextQuestionIndex].answers]));
-    setIsAnswerSubmitted(false); // Enable the button again for the next question
+    setIsAnswerSubmitted(false);
+    setIncorrectAttempts(0); // Reset incorrect attempts when moving to the next question
   };
 
   const handleFinishQuiz = () => {
@@ -304,6 +211,21 @@ const App = () => {
   return (
     <div className="flex flex-col justify-center items-center h-screen">
       <h1 className="text-3xl font-bold mb-4">Questão {currentQuestion + 1}</h1>
+
+      {/* Display hearts */}
+      <div className="absolute top-4 right-4 flex">
+        {Array.from({ length: 2 }, (_, index) => (
+          <span
+            key={index}
+            className={`text-2xl ${
+              index < incorrectAttempts ? "text-gray-400" : "text-red-500"
+            }`}
+          >
+            ❤️
+          </span>
+        ))}
+      </div>
+
       <div
         className={`p-4 border-2 rounded-lg ${
           isCorrect ? "bg-green-200" : isWrong ? "bg-red-200" : "bg-white"
@@ -331,10 +253,15 @@ const App = () => {
       {isWrong && (
         <p className="text-2xl font-bold mb-4 text-red-500">Tente Novamente!</p>
       )}
+      {incorrectAttempts >= 2 && (
+        <p className="text-2xl font-bold mb-4 text-red-500">
+          Sem mais tentativas
+        </p>
+      )}
       <button
         onClick={handleSubmitAnswer}
         className="px-4 py-2 bg-blue-500 text-white rounded-lg mt-4"
-        disabled={isCorrect} // Disable button only if the answer is correct
+        disabled={isCorrect || incorrectAttempts >= 2} // Disable if correct or if two incorrect attempts
       >
         Confirmar Resposta
       </button>
@@ -346,7 +273,7 @@ const App = () => {
           Próximo
         </button>
       )}
-      {currentQuestion === questions.length - 1 && (
+      {isAnswered && isCorrect && currentQuestion === questions.length - 1 && (
         <button
           onClick={handleFinishQuiz}
           className="absolute bottom-4 center-4 px-4 py-2 bg-red-500 text-white rounded-lg"
