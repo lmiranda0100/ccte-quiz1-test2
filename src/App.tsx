@@ -236,7 +236,7 @@ const App = () => {
   if (!isAuthenticated) {
     return (
       <div className="flex flex-col justify-center items-center h-screen">
-        <h2 className="mb-4">Digite a Senha para Aceder ao Quiz</h2>
+        <h2 className="font-bold mb-4">Digite a Senha para Aceder ao Quiz</h2>
         <input
           type="password"
           placeholder="Senha"
